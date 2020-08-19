@@ -1,8 +1,7 @@
 package com.example.exercise_roomdb.room.artist
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.lifecycle.LiveData
+import androidx.room.*
 import com.example.exercise_roomdb.room.artist.Artist
 
 @Dao
@@ -11,8 +10,14 @@ interface ArtistDao {
     fun createArtist(artist: Artist)
 
     @Query(value = "SELECT * FROM artist")
-    fun getAllArtist(): List<Artist>
+    fun getAllArtist(): LiveData<List<Artist>>
 
     @Query(value = "SELECT * FROM Artist WHERE id = :id")
     fun getArtistById(id: Int): Artist
+
+    @Delete
+    fun deleteArtist(artist: Artist)
+
+    @Update
+    fun updateArtist(artist: Artist)
 }

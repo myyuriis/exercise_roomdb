@@ -34,8 +34,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
+            android:onClick="addNewArtist"
             android:text="Submit"
-            app:cornerRadius="10dp"/>
+            app:cornerRadius="10dp" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

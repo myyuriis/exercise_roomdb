@@ -2,6 +2,7 @@ package com.example.exercise_roomdb.viewmodel.artist
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.exercise_roomdb.room.AppRoomDatabase
 import com.example.exercise_roomdb.room.artist.Artist
@@ -12,10 +13,11 @@ import kotlinx.coroutines.launch
 class ArtistViewModel(application: Application): AndroidViewModel(application) {
 
     private val repository: ArtistRepository
-    val allArtist: List<Artist>
+    val allArtist: LiveData<List<Artist>>
 
     init {
-        val artistDao = AppRoomDatabase.getDatabaseInstance(application).artistDao()
+        val artistDao = AppRoomDatabase
+            .getDatabaseInstance(application).artistDao()
         repository = ArtistRepository(artistDao)
         allArtist = repository.allArtist
     }

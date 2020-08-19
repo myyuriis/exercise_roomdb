@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.exercise_roomdb.room.artist.Artist
 import com.example.exercise_roomdb.room.artist.ArtistDao
 
-@Database(entities = arrayOf(Artist::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(Artist::class), version = 2)
 public abstract class AppRoomDatabase : RoomDatabase() {
 
     abstract fun artistDao(): ArtistDao
@@ -22,7 +22,7 @@ public abstract class AppRoomDatabase : RoomDatabase() {
             DATABASE_INSTANCE = Room
                 .databaseBuilder(context.applicationContext
                     , AppRoomDatabase::class.java
-                    , "spotify database").build()
+                    , "spotify database").fallbackToDestructiveMigration().build()
             return DATABASE_INSTANCE as AppRoomDatabase
         }
     }
